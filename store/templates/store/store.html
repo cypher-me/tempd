@@ -1,0 +1,69 @@
+{% extends "store/base.html" %} {% block content %}
+<div class="container d-flex flex-row flex-wrap">
+    <!-- {% for video in videos %}
+        <div
+            class="card mt-lg-5 mx-auto d-flex align-items-center border m-2"
+            style="max-width: 25rem"
+        >
+            <div class="ratio ratio-4x3">
+                <iframe width="560" height="345" src="{{ video.video_url }}?rel=0" frameborder="0" allowfullscreen></iframe>
+                
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ video.video_title }}</h5>
+                <p class="card-text">{{ video.video_description }}</p>
+                <p class="card-text">{{ video.upload_date }}</p>
+                <a href="#" class="btn btn-primary m-1">Add to Cart</a>
+                <a href="{% url 'store-detail' video.id %}" class="btn btn-primary pl-3 m-1">View</a>
+            </div>
+        </div>
+    {% endfor %} -->
+
+        <!-- eeeeeeeeeeeeeeeee -->
+        {% for charity in charities %}
+        <div class="card m-4">
+            <div class="card-header">
+              {{ charity.charity_title }}
+            </div>
+            <div class="card-body">
+              <p class="card-text">{{ charity.charity_short_description }}</p>
+              <p class="card-title">{{ charity.upload_date }}</p>
+              <a href="{% url 'store-detail' charity.id %}" class="btn btn-primary pl-3 m-1">View</a>
+            </div>
+          </div>
+          {% endfor %}
+        <!-- eeeeeeeeeeeeeeeee -->
+    
+
+</div>
+
+{% if is_paginated %}
+<div class="container d-flex flex-row justify-content-center">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li class="page-item p-1"><a href="?page=1" class="btn btn-outline-info mb-4">First</a></li>
+            <li class="page-item p-1"><a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-info mb-4">Previous</a></li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+            <li class="page-item p-1"><a href="?page={{ num }}" class="btn btn-info mb-4">
+                {{ num }}
+            </a></li>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <li class="page-item p-1"><a href="?page=1" class="btn btn-outline-info mb-4">First</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="page-item p-1"><a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-info mb-4">Next</a></li>
+            <li class="page-item p-1"><a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-info mb-4">Last</a></li>
+        {% endif %}
+
+    </ul>
+    </nav> 
+    {% endif %}
+</div>
+
+{% endblock content%}

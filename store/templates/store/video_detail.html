@@ -1,0 +1,25 @@
+{% extends "store/base.html" %} {% block content %}
+<div class="container d-flex flex-row flex-wrap">
+        <!-- <div
+            class="card mt-lg-5 mx-auto d-flex align-items-center border m-2"
+            style="max-width: 25rem"
+        > -->
+
+            <div class="card m-4">
+                <div class="card-header">
+                  {{ object.charity_title }}
+                </div>
+                <div class="card-body">
+                  <p class="card-text">{{ object.charity_long_description }}</p>
+                  <p class="card-title">{{ object.upload_date }}</p>
+                  <a href="#" class="btn btn-primary">Make Donation</a>
+                </div>
+              </div>
+        <!-- </div> -->
+
+    <!-- temp data -->
+    <!-- temp data -->
+
+</div>
+
+{% endblock content%}
